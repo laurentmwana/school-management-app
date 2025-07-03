@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->integer('start');
             $table->integer('end');
-            $table->boolean('is_closed')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
