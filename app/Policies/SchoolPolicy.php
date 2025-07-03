@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
+use App\Enums\RoleUserEnum;
 use App\Models\School;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class SchoolPolicy
 {
@@ -13,7 +13,7 @@ class SchoolPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class SchoolPolicy
      */
     public function view(User $user, School $school): bool
     {
-        return false;
+        return $this->isOwner($user, $school);
     }
 
     /**
@@ -29,7 +29,7 @@ class SchoolPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $this->isOwner($user);
     }
 
     /**
@@ -37,7 +37,7 @@ class SchoolPolicy
      */
     public function update(User $user, School $school): bool
     {
-        return false;
+        return $this->isOwner($user, $school);
     }
 
     /**
@@ -45,7 +45,7 @@ class SchoolPolicy
      */
     public function delete(User $user, School $school): bool
     {
-        return false;
+        return $this->isOwner($user, $school);
     }
 
     /**
@@ -53,7 +53,7 @@ class SchoolPolicy
      */
     public function restore(User $user, School $school): bool
     {
-        return false;
+        return $this->isOwner($user, $school);
     }
 
     /**
@@ -61,6 +61,18 @@ class SchoolPolicy
      */
     public function forceDelete(User $user, School $school): bool
     {
-        return false;
+        return $this->isOwner($user, $school);
+    }
+
+    private function isOwner(User $user, ?School $school = null)
+    {
+        return $school === null
+            ? $this->hasAdmin($user)
+            : $this->hasAdmin($user) && $school->user_id === $user->id;
+    }
+
+    private function hasAdmin(User $user)
+    {
+        return $user->role === RoleUserEnum::ADMIN->value;
     }
 }
