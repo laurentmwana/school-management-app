@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminSchoolController;
+use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminYearController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,8 @@ Route::name('#')
 
         Route::resource('course', AdminCourseController::class)
             ->parameter('course', 'id');
+
+
+        Route::resource('student', AdminStudentController::class)
+            ->parameter('student', 'id');
     });
