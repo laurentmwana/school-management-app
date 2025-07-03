@@ -17,7 +17,7 @@ class GradeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'score' => fake()->randomFloat(min: 1, max: 20),
         ];
     }
 }
