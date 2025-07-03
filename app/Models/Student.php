@@ -15,7 +15,7 @@ class Student extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'firstname', 'birth', 'gender', 'registration_token'];
+    protected $fillable = ['name', 'firstname', 'birth', 'gender', 'registration_token', 'school_id'];
 
     public function actualLevel(): HasOne
     {
@@ -30,6 +30,11 @@ class Student extends Model
     public function historicLevels(): BelongsToMany
     {
         return $this->belongsToMany(HistoricLevel::class);
+    }
+
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class);
     }
 
 }

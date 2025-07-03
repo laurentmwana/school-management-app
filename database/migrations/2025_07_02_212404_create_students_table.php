@@ -24,6 +24,10 @@ return new class extends Migration
                     GenderEnum::cases()
                 )
             );
+            $table->foreignId('school_id')
+                    ->constrained()
+                    ->cascadeOnDelete()
+                    ->cascadeOnUpdate();
             $table->date('birth');
             $table->timestamps();
             $table->softDeletes();
