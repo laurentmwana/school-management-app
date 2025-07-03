@@ -1,0 +1,39 @@
+<?php
+
+use App\Enums\GenderEnum;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('students', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('firstname');
+            $table->string('registration_token')->unique();
+            $table->enum(
+                'gender',
+                array_map(
+                    fn(GenderEnum $enum) => $enum->value,
+                    GenderEnum::cases()
+                )
+            );
+            $table->date('birth');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('students');
+    }
+};
