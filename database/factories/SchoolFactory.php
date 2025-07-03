@@ -17,7 +17,9 @@ class SchoolFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'alias' => fake()->unique()->name(),
+            'description' => fake()->paragraph(4)
         ];
     }
 }

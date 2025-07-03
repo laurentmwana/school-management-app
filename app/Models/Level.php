@@ -13,7 +13,7 @@ class Level extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'alias', 'school_id'];
+    protected $fillable = ['name', 'alias', 'school_id', 'sub_cycle', 'cycle'];
 
     public function school(): BelongsTo
     {

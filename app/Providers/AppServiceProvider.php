@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\ActualLevel;
+use App\Models\School;
+use App\Observers\ActualLevelObserver;
+use App\Observers\SchoolObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        ActualLevel::observe([ActualLevelObserver::class]);
+        School::observe([SchoolObserver::class]);
     }
 }
