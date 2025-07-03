@@ -17,7 +17,9 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'alias' => fake()->unique()->name(),
+            'credits' => random_int(5, 20),
         ];
     }
 }

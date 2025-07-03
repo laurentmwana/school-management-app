@@ -19,7 +19,7 @@ class YearSeeder extends Seeder
     public function run(): void
     {
         foreach (self::YEARS as $year) {
-            Year::factory()->create($year);
+            Year::create($year);
         }
     }
 }
