@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\GenderEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class GuardianFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name,
+            'firstname' => fake()->firstname,
+            'gender' => fake()->randomElement(GenderEnum::cases())->value,
+            'phone' => fake()->phoneNumber(),
         ];
     }
 }

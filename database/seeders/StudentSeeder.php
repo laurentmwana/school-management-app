@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ActualLevel;
-use App\Models\Level;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\Year;
@@ -17,15 +16,11 @@ class StudentSeeder extends Seeder
 
         foreach (School::with('levels')->get() as $school) {
             foreach ($school->levels as $level) {
-                $nStudents = random_int(10, 15);
-
-                for ($i = 0; $i < $nStudents; $i++) {
-                    // Créer un étudiant attaché à l'école
+                for ($i = 0; $i < 5; $i++) {
                     $student = Student::factory()->create([
                         'school_id' => $school->id,
                     ]);
 
-                    // Créer un historique sur 2 à 3 années (aléatoire)
                     $studentYears = $years->shuffle()->take(random_int(2, 3));
 
                     foreach ($studentYears as $year) {

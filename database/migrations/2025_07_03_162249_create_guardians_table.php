@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('firstname');
-            $table->string('registration_token')->unique();
             $table->enum(
                 'gender',
                 array_map(
