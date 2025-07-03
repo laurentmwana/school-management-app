@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminGradeController;
 use App\Http\Controllers\Admin\AdminGuardianController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminStudentController;
@@ -33,4 +34,7 @@ Route::name('#')
 
         Route::resource('guardian', AdminGuardianController::class)
             ->parameter('guardian', 'id');
+
+        Route::resource('grade', AdminGradeController::class)
+            ->parameter('grade', 'id');
     });
