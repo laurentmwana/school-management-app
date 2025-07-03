@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminGuardianController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminYearController;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::name('#')
+    ->prefix('admin')
     ->middleware(['auth', 'verified', 'admin'])
     ->group(function () {
         Route::resource('school', AdminSchoolController::class)
@@ -28,4 +30,7 @@ Route::name('#')
 
         Route::resource('student', AdminStudentController::class)
             ->parameter('student', 'id');
+
+        Route::resource('guardian', AdminGuardianController::class)
+            ->parameter('guardian', 'id');
     });
