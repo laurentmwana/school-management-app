@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 class YearSeeder extends Seeder
 {
     private const YEARS = [
-        ['name' => '2023-2024', 'start' => 2023, 'end' => 2024, 'is_closed' => true],
+        ['name' => '2023-2024', 'start' => 2023, 'end' => 2024,],
         ['name' => '2024-2025', 'start' => 2024, 'end' => 2025],
     ];
 
