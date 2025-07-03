@@ -19,7 +19,7 @@ return new class extends Migration
                     ->cascadeOnUpdate();
             $table->string('name');
             $table->string('alias')->nullable();
-            $table->integer('credits');
+            $table->integer('credits')->default(20);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminYearController;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,7 @@ Route::name('#')
 
         Route::get('year', [AdminYearController::class, 'index'])
             ->name('year.index');
+
+        Route::resource('course', AdminCourseController::class)
+            ->parameter('course', 'id');
     });
