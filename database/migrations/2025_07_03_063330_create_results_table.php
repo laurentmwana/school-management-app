@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PeriodEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -29,8 +30,16 @@ return new class extends Migration
                     ->cascadeOnUpdate();
 
             $table->string('file');
-            $table->softDeletes();
+            $table->enum(
+                'period',
+                array_map(
+                    fn(PeriodEnum $enum) => $enum->value,
+                    PeriodEnum::cases()
+                )
+            );
+            $table->float('percent');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -10,7 +10,7 @@ class Result extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['level_id', 'student_id', 'file', 'year_id'];
+    protected $fillable = ['level_id', 'student_id', 'file', 'year_id', 'period', 'percent'];
 
     public function student(): BelongsTo
     {
