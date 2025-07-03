@@ -19,9 +19,4 @@ class Course extends Model
     {
         return $this->belongsTo(Level::class);
     }
-
-    public function teacher(): BelongsTo
-    {
-        return $this->belongsTo(Teacher::class);
-    }
 }

@@ -16,11 +16,6 @@ class School extends Model
 
     protected $fillable = ['name', 'alias', 'description', 'user_id'];
 
-    public function teachers(): BelongsToMany
-    {
-        return $this->belongsToMany(Teacher::class);
-    }
-
     public function levels(): HasMany
     {
         return $this->hasMany(Level::class);

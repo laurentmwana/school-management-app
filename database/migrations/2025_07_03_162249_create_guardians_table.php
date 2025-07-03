@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parent_students', function (Blueprint $table) {
+        Schema::create('guardians', function (Blueprint $table) {
             $table->id();
-             $table->string('name');
+            $table->string('name');
             $table->string('firstname');
             $table->string('registration_token')->unique();
             $table->enum(
@@ -24,25 +24,27 @@ return new class extends Migration
                     GenderEnum::cases()
                 )
             );
-
             $table->string('phone')->unique();
-
             $table->foreignId('user_id')
+                ->unique()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-
             $table->timestamps();
             $table->softDeletes();
-
         });
 
-         Schema::table('students', function (Blueprint $table) {
-            $table->foreignId('parent_student_id')
-                ->nullable()
+        Schema::create('guardian_student', function (Blueprint $table) {
+            $table->foreignId('student_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->foreignId('guardian_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->primary(['guardian_id', 'student_id']);
         });
     }
 
@@ -51,6 +53,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parent_students');
+        Schema::dropIfExists('guardians');
     }
 };
