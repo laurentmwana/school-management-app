@@ -26,6 +26,7 @@ return new class extends Migration
             );
             $table->date('birth');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

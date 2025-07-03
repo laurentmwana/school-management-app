@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('alias')->nullable();
             $table->integer('credits');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

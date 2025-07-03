@@ -32,9 +32,11 @@ return new class extends Migration
                     ->constrained()
                     ->cascadeOnDelete()
                     ->cascadeOnUpdate();
-            
+
             $table->float('score')->default(0);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

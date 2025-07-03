@@ -33,6 +33,8 @@ return new class extends Migration
                 ->cascadeOnUpdate();
 
             $table->timestamps();
+            $table->softDeletes();
+
         });
 
          Schema::table('students', function (Blueprint $table) {

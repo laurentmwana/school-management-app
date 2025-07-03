@@ -29,7 +29,7 @@ return new class extends Migration
                     ->cascadeOnUpdate();
 
             $table->string('file');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
