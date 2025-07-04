@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory(2)->create([
-            'role' => RoleUserEnum::ADMIN->value
+            'roles' => [RoleUserEnum::ADMIN->value, RoleUserEnum::COMPLETED->value]
         ]);
     }
 }

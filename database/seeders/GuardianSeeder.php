@@ -16,7 +16,7 @@ class GuardianSeeder extends Seeder
     public function run(): void
     {
         User::factory(12)->create([
-            'role' => RoleUserEnum::PARENT->value
+            'roles' => [RoleUserEnum::PARENT->value]
         ])->each(function (User $user) {
              Guardian::factory()->create([
                 'user_id' => $user->id,
