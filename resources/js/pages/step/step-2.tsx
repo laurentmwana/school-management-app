@@ -37,7 +37,7 @@ export default function StepSchoolNames({ step, user, dataSession }: StepSchoolN
         <StepCardLayout
             currentStep={2}
             onPrevious={() => router.get(route('step', { step: 1 }))}
-            totalSteps={7}
+            totalSteps={4}
             previousStep={1}
             title="Nom de l’école"
             description="Définissez clairement le nom officiel et l’acronyme de votre établissement pour une identification unique et professionnelle."

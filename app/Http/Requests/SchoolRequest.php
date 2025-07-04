@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueSchoolRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SchoolRequest extends FormRequest
@@ -21,19 +22,28 @@ class SchoolRequest extends FormRequest
      */
     public function rules(): array
     {
+        $user = $this->user();
+        $id = $this->input('id');
+
         return [
             'name' => [
                 'required',
                 'string',
                 'max:255',
+                (new UniqueSchoolRule($id, $user)),
             ],
             'alias' => [
                 'required',
                 'string',
                 'max:100',
             ],
+            'address' => [
+                'required',
+                'string',
+                'max:255',
+            ],
             'description' => [
-                'nullable',
+                'required',
                 'string',
                 'between:30,9000',
             ],

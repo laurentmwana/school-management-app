@@ -41,7 +41,7 @@ export default function StepSchoolNames({ step, user, dataSession }: StepSchoolN
             className="max-w-2xl"
             currentStep={3}
             onPrevious={() => router.get(route('step', { step: 2 }))}
-            totalSteps={7}
+            totalSteps={4}
             previousStep={2}
             title="Adresse & Description"
             description="Précisez l’adresse physique de votre établissement ainsi qu’une brève description pour mieux le présenter."

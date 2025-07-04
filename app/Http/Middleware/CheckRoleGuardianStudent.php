@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\RoleUserEnum;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckRoleParent
+class CheckRoleGuardianStudent
 {
     private const SITUATIONS = ['yes', 'no'];
 
@@ -19,7 +18,7 @@ class CheckRoleParent
     {
         $user = $request->user();
 
-        if (!$user || !$user->role !== RoleUserEnum::PARENT->value) {
+        if (($user instanceof User &&  !isParent($user->roles))) {
             abort(Response::HTTP_FORBIDDEN, 'Accès refusé : vous devez un parent pour accéder à cette ressource.');
         }
 

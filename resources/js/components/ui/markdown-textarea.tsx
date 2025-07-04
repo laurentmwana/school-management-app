@@ -157,7 +157,7 @@ export const MarkdownTextarea = ({
           <div className="min-h-[200px] p-4 bg-background">
             {content ? (
               <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-semibold prose-p:leading-relaxed prose-pre:bg-muted prose-pre:border">
-                <ReactMarkdown>{content}</ReactMarkdown>
+                <ReactMarkdown >{content}</ReactMarkdown>
               </div>
             ) : (
               <p className="text-muted-foreground text-sm">Rien à prévisualiser</p>

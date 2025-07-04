@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Year extends Model
 {
-    protected $fillable = ['name', 'start', 'end', 'is_closed', 'school_ids'];
+    protected $fillable = ['name', 'start', 'end', 'is_closed', 'school_id'];
 
     public function grades(): HasMany
     {

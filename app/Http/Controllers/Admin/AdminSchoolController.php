@@ -5,54 +5,62 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use App\Models\School;
+use App\Services\Repositories\SchoolRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class AdminSchoolController extends Controller
 {
+    public function __construct(private SchoolRepository $repository) {}
 
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        return Inertia::render('admin/school/index');
+        $schools = $this->repository->getSchoolForUser($request);
+
+        return Inertia::render('admin/school/index', [
+            'schools' => $schools,
+        ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('admin/school/create');
     }
 
     public function store(SchoolRequest $request): RedirectResponse
     {
-        $user = $request->user();
+        $validated = $request->validated();
+        $validated['description'] = Str::markdown($validated['description']);
+        $validated['user_id'] = $request->user()->id;
 
-        School::create([
-            ...$request->validated(),
-            'user_id' => $user->id,
-        ]);
+        School::create($validated);
 
         return redirect()->route('#school.index')
-            ->with('message', 'école créée');
+            ->with('message', 'École créée avec succès.');
     }
 
-
-    public function show(string $id): Response
+    public function show(Request $request, string $id): Response
     {
-        $school = School::findOrFail($id);
+        $school = $this->repository->getSchoolForUserOrFail($request, $id);
+
+        $this->authorize('view', $school);
 
         return Inertia::render('admin/school/show', [
-            'school' => $school
+            'school' => $school,
         ]);
-
     }
 
     public function edit(string $id): Response
     {
         $school = School::findOrFail($id);
 
+        $this->authorize('update', $school);
+
         return Inertia::render('admin/school/edit', [
-            'school' => $school
+            'school' => $school,
         ]);
     }
 
@@ -60,13 +68,18 @@ class AdminSchoolController extends Controller
     {
         $school = School::findOrFail($id);
 
-        $school->update($request->validated());
+        $this->authorize('update', $school);
+
+        $validated = $request->validated();
+        $validated['description'] = Str::markdown($validated['description']);
+
+        $school->update($validated);
 
         return redirect()->route('#school.index')
-            ->with('message', 'école editée');
+            ->with('message', 'École modifiée avec succès.');
     }
 
-    public function destroy(Request $request,  $id)
+    public function destroy(Request $request, string $id): RedirectResponse
     {
         $request->validate([
             'password' => ['required', 'current_password'],
@@ -74,10 +87,11 @@ class AdminSchoolController extends Controller
 
         $school = School::findOrFail($id);
 
+        $this->authorize('delete', $school);
+
         $school->delete();
 
         return redirect()->route('#school.index')
-            ->with('message', 'école supprimée');
-
+            ->with('message', 'École supprimée avec succès.');
     }
 }

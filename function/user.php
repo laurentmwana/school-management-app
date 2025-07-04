@@ -6,8 +6,8 @@ use App\Enums\RoleUserEnum;
 function isAdmin(array $roles): bool
 {
     $adminRoles = [
-        RoleUserEnum::ADMIN->value,
         RoleUserEnum::COMPLETED->value,
+        RoleUserEnum::ADMIN->value,
     ];
 
     return hasRequiredRoles($roles, $adminRoles);

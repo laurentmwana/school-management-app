@@ -26,6 +26,11 @@ class School extends Model
         return $this->hasMany(Level::class);
     }
 
+    public function years(): HasMany
+    {
+        return $this->hasMany(Year::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

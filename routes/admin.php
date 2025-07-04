@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('#')
     ->prefix('admin')
-    ->middleware(['auth', 'verified', 'admin'])
+    ->middleware(['auth', 'verified', 'completed:yes', 'admin'])
     ->group(function () {
         Route::resource('school', AdminSchoolController::class)
             ->parameter('school', 'id');
@@ -28,7 +28,6 @@ Route::name('#')
 
         Route::resource('course', AdminCourseController::class)
             ->parameter('course', 'id');
-
 
         Route::resource('student', AdminStudentController::class)
             ->parameter('student', 'id');

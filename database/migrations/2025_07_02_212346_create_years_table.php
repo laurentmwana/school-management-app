@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('years', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('start');
-            $table->integer('end');
+            $table->date('start');
+            $table->date('end');
             $table->boolean('is_closed')->default(false);
             $table->foreignId('school_id')
-                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
