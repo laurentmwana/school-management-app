@@ -30,7 +30,7 @@ const mainNavItemsGroup: NavGroup[] = [
             {
                 title: 'Classes',
                 icon: ArrowUp01,
-                href: '#',
+                href: route('#level.index'),
             },
 
             {
@@ -63,7 +63,7 @@ const mainNavItemsGroup: NavGroup[] = [
         title: 'Autres',
         items: [
             {
-                title: 'Tituteur',
+                title: 'Tuteur',
                 icon: User2,
                 href: route('#guardian.index'),
             },
