@@ -24,11 +24,6 @@ return new class extends Migration
                 )
             );
             $table->string('phone')->unique();
-            $table->foreignId('user_id')
-                ->unique()
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -38,6 +33,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+
             $table->foreignId('guardian_id')
                 ->constrained()
                 ->cascadeOnDelete()

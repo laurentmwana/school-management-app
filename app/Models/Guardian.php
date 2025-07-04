@@ -13,7 +13,7 @@ class Guardian extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'firstname', 'phone', 'gender', 'registration_token', 'user_id'];
+    protected $fillable = ['name', 'firstname', 'phone', 'gender'];
 
     public function students(): BelongsToMany
     {

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('address');
             $table->longText('description');
             $table->foreignId('user_id')
+                ->unique()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

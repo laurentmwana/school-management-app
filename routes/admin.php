@@ -15,8 +15,6 @@ Route::name('#')
     ->prefix('admin')
     ->middleware(['auth', 'verified', 'completed:yes', 'admin'])
     ->group(function () {
-        Route::resource('school', AdminSchoolController::class)
-            ->parameter('school', 'id');
 
         Route::get('year/{id}', [AdminYearController::class, 'show'])
             ->name('year.show');

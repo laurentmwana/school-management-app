@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Year;
-use App\Services\Repositories\YearRepository;
+use App\Services\Repositories\YearRepo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -12,7 +12,7 @@ use Inertia\Response;
 
 class AdminYearController extends Controller
 {
-    public function __construct(private YearRepository $repository) {}
+    public function __construct(private YearRepo $repository) {}
 
     public function index(Request $request)
     {

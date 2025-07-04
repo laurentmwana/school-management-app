@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Pagination\Paginator;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class LevelRepository
+class CourseRepo
 {
-    public function getLevelSchools(Request $request): Paginator
+    public function getCourseeSchools(Request $request): Paginator
     {
         $user = $request->user();
 

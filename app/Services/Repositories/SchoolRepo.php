@@ -6,7 +6,7 @@ use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class SchoolRepository
+class SchoolRepo
 {
 
     public function getSchoolForUser(Request $request): Paginator

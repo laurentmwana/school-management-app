@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Pagination\Paginator;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class YearRepository
+class YearRepo
 {
     public function getYearSchools(Request $request): Paginator
     {

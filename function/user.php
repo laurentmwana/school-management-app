@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Enums\RoleUserEnum;
 
 function isAdmin(array $roles): bool
