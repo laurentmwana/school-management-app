@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\School;
 use App\Models\Year;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -9,7 +10,7 @@ use Illuminate\Database\Seeder;
 class YearSeeder extends Seeder
 {
     private const YEARS = [
-        ['name' => '2023-2024', 'start' => 2023, 'end' => 2024,],
+        ['name' => '2023-2024', 'start' => 2023, 'end' => 2024, 'is_closed' => true],
         ['name' => '2024-2025', 'start' => 2024, 'end' => 2025],
     ];
 
@@ -18,8 +19,14 @@ class YearSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (self::YEARS as $year) {
-            Year::create($year);
+        foreach (School::all() as $school) {
+            foreach (self::YEARS as $year) {
+                Year::create([
+                    ...$year,
+                    'school_id' => $school->id,
+                ]);
+            }
         }
+
     }
 }

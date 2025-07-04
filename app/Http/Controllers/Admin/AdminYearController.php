@@ -43,7 +43,6 @@ class AdminYearController extends Controller
 
     }
 
-
     private function createNewYear(Year $year): Year
     {
         [$nameYear, $start, $end] = $this->getYearName($year);
@@ -53,6 +52,8 @@ class AdminYearController extends Controller
         if ($existingYear) {
             throw new \Exception("L'année académique $nameYear existe déjà.");
         }
+
+        $year->update(['is_closed']);
 
         $newYear =  Year::create([
             'start' => $start,
