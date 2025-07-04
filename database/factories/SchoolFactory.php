@@ -19,7 +19,8 @@ class SchoolFactory extends Factory
         return [
             'name' => fake()->name(),
             'alias' => fake()->unique()->name(),
-            'description' => fake()->paragraph(4)
+            'description' => fake()->paragraph(4),
+            'address' => fake()->address()
         ];
     }
 }

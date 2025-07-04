@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('alias')->nullable();
+            $table->text('address');
             $table->longText('description');
             $table->foreignId('user_id')
                 ->constrained()

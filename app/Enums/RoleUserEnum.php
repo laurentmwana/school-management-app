@@ -6,9 +6,7 @@ enum RoleUserEnum: string
 {
     case ADMIN = "admin";
 
-    case STUDENT = "student";
+    case COMPLETED = "completed";
 
     case PARENT = "parent";
-
-    case LOCK = "lock";
 }
