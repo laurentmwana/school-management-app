@@ -2,27 +2,27 @@
 
 namespace App\Services\Repositories;
 
-use App\Models\Level;
+use App\Models\Year;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Pagination\Paginator;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class LevelRepository
+class YearRepository
 {
-    public function getLevelSchools(Request $request): Paginator
+    public function getYearSchools(Request $request): Paginator
     {
         $user = $request->user();
 
         $builder = $this->getQueryForUser($user->id);
 
         $queryBuilder = QueryBuilder::for($builder)
-            ->allowedFilters(['name', 'alias', 'cycle', 'sub_cycle'])
-            ->defaultSorts(['updated_at', 'id', 'created_at']);
+            ->allowedFilters(['name', 'start', 'end', 'is_closed'])
+            ->defaultSorts(['updated_at', 'id', 'is_closed']);
 
         return $queryBuilder->paginate(4);
     }
 
-    public function getLevelSchoolOrFail(Request $request, string $id): Level
+    public function getYearSchoolOrFail(Request $request, string $id): Year
     {
         $user = $request->user();
 
@@ -33,7 +33,7 @@ class LevelRepository
 
     private function getQueryForUser(int $userId)
     {
-        return Level::with(['school'])
+        return Year::with(['school'])
             ->whereHas('school', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             });

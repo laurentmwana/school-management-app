@@ -11,14 +11,14 @@ class YearSeeder extends Seeder
     private const YEARS = [
         [
             'name' => '2023-2024',
-            'start' => '2023-09-01',
-            'end' => '2024-06-30',
+            'start' => 2023,
+            'end' => 2024,
             'is_closed' => true,
         ],
         [
             'name' => '2024-2025',
-            'start' => '2024-09-01',
-            'end' => '2025-06-30',
+            'start' => 2024,
+            'end' => 2025,
             'is_closed' => false,
         ],
     ];

@@ -21,8 +21,8 @@ Route::name('#')
         Route::get('year/{id}', [AdminYearController::class, 'show'])
             ->name('year.show');
 
-        Route::post('year/{id}/create', [AdminYearController::class, 'store'])
-            ->name('year.create');
+        Route::delete('year/{id}/closed', [AdminYearController::class, 'store'])
+            ->name('year.closed');
 
         Route::get('year', [AdminYearController::class, 'index'])
             ->name('year.index');

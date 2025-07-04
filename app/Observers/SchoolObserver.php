@@ -71,8 +71,8 @@ class SchoolObserver
         Year::create([
             'school_id' => $school->id,
             'name' => $name,
-            'start' => $start,
-            'end' => $end,
+            'start' => $start->year,
+            'end' => $end->year,
             'is_closed' => false,
         ]);
     }
