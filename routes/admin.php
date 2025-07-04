@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminGradeController;
 use App\Http\Controllers\Admin\AdminGuardianController;
+use App\Http\Controllers\Admin\AdminResultController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminYearController;
@@ -37,4 +38,7 @@ Route::name('#')
 
         Route::resource('grade', AdminGradeController::class)
             ->parameter('grade', 'id');
+
+        Route::resource('result', AdminResultController::class)
+            ->parameter('result', 'id');
     });
