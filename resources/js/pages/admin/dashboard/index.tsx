@@ -20,7 +20,7 @@ interface IndexProps {
 }
 
 export default function Dashboard() {
-    const { auth, countStudents, countSchools, countCourses } = usePage<SharedData & IndexProps>().props;
+    const { countStudents, countSchools, countCourses } = usePage<SharedData & IndexProps>().props;
 
     const stats = [
         {
