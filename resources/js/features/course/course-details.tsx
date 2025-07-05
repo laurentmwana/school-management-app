@@ -24,38 +24,7 @@ export function CourseCardDetails({ course, grades = [], variant = "other" }: Co
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href={variant === "admin" ? "/admin/courses" : "/courses"}>
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Retour
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold">{course.name}</h1>
-            <p className="text-muted-foreground">{course.alias}</p>
-          </div>
-        </div>
 
-        {variant === "admin" && (
-          <div className="flex gap-2">
-            <Button variant="outline" asChild>
-              <Link href={`/admin/courses/${course.id}/edit`}>
-                <Edit className="h-4 w-4 mr-2" />
-                Éditer
-              </Link>
-            </Button>
-            <Button variant="destructive" asChild>
-              <Link href={`/admin/courses/${course.id}/delete`}>
-                <Trash2 className="h-4 w-4 mr-2" />
-                Supprimer
-              </Link>
-            </Button>
-          </div>
-        )}
-      </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Informations principales */}

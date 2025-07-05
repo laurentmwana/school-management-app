@@ -30,6 +30,11 @@ class LevelRepo
             ->findOrFail($id);
     }
 
+    public function getAll(int $userId, array $fields = ['*'])
+    {
+        return $this->getQueryForUser($userId)->get($fields);
+    }
+
 
     private function getQueryForUser(int $userId)
     {
