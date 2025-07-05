@@ -57,9 +57,6 @@ export interface CourseModel {
     level: LevelModel;
     level_id: number;
 
-    year: YearModel;
-    year_id: number;
-
     created_at: string;
     updated_at: string;
 }

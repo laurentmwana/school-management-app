@@ -25,15 +25,13 @@ interface StepSchoolNamesProps {
 
 export default function StepSchoolNames({ step, user, dataSession }: StepSchoolNamesProps) {
     const { data, setData, post, processing, errors } = useForm<Required<StepSchoolNamesForm>>({
-        address: user.schools[0]?.address ?? dataSession?.address ?? '',
-        description: user.schools[0]?.description ?? dataSession?.description ?? '',
+        address: user.school?.address ?? dataSession?.address ?? '',
+        description: user.school?.description ?? dataSession?.description ?? '',
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('step', { step }));
-
-        console.log(errors);
     };
 
     return (

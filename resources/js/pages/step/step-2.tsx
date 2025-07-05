@@ -24,8 +24,8 @@ interface StepSchoolNamesProps {
 
 export default function StepSchoolNames({ step, user, dataSession }: StepSchoolNamesProps) {
     const { data, setData, post, processing, errors } = useForm<Required<StepSchoolNamesForm>>({
-        name: user.schools[0]?.name ?? dataSession?.name ?? '',
-        alias: user.schools[0]?.alias ?? dataSession?.alias ?? '',
+        name: user.school?.name ?? dataSession?.name ?? '',
+        alias: user.school?.alias ?? dataSession?.alias ?? '',
     });
 
     const submit: FormEventHandler = (e) => {

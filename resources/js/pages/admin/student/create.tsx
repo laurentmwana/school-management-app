@@ -1,35 +1,38 @@
 import { Heading } from '@/components/heading';
 import { Card, CardContent } from '@/components/ui/card';
-import { SchoolForm } from '@/features/school/school-form';
+import { StudentForm } from '@/features/student/student-form';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { SharedData, type BreadcrumbItem } from '@/types';
+import { LevelModel, YearModel } from '@/types/model';
+import { Head, usePage } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Écoles',
-        href: route('#school.index'), // Supposé route correcte
+        title: 'Élèves',
+        href: route('#student.index'),
     },
     {
-        title: "Création d'une école",
+        title: "Création d'un(e) élève",
         href: '',
     },
 ];
 
 export default function Create() {
+    const { levels, years } = usePage<SharedData & { levels: LevelModel[]; years: YearModel[] }>().props;
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Création d'une école" />
+            <Head title="Création d'un(e) élève" />
             <div className="mb-5 flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <Heading
-                    title="Création d'une école"
-                    description="Ajoutez une nouvelle école pour démarrer la gestion des élèves, des cours et des années scolaires."
+                    title="Création d'un(e) élève"
+                    description="Ajoutez un nouvel élève avec ses informations personnelles, sa classe et son année scolaire."
                 />
 
                 <div className="max-w-4xl">
                     <Card>
                         <CardContent>
-                            <SchoolForm />
+                            <StudentForm levels={levels} years={years} />
                         </CardContent>
                     </Card>
                 </div>

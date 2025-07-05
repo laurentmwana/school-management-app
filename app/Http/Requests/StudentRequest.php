@@ -28,7 +28,6 @@ class StudentRequest extends FormRequest
             'firstname' => ['required', 'string', 'max:255'],
             'gender' => ['required', new Enum(GenderEnum::class)],
             'birth' => ['required', 'date', 'before:today'],
-            'school_id' => ['required', 'exists:schools,id'],
             'level_id' => ['required', 'exists:levels,id'],
             'year_id' => ['required', 'exists:years,id'],
         ];

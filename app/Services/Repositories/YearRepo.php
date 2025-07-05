@@ -30,6 +30,14 @@ class YearRepo
             ->findOrFail($id);
     }
 
+    public function getAll(int $userId, array $columns = ['*'])
+    {
+        $buider = $this->getQueryForUser($userId);
+
+        return $buider->orderByDesc('updated_at')
+            ->get($columns);
+    }
+
 
     private function getQueryForUser(int $userId)
     {

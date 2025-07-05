@@ -1,38 +1,38 @@
 import { Heading } from '@/components/heading';
-import { SchoolCardDetails } from '@/features/school/school-details';
+import { StudentCardDetails } from '@/features/student/student-details';
 import AppLayout from '@/layouts/app-layout';
 import { SharedData, type BreadcrumbItem } from '@/types';
-import { SchoolModel } from '@/types/model';
+import { StudentModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Écoles',
-        href: route('#school.index'),
+        title: 'Élèves',
+        href: route('#student.index'),
     },
     {
-        title: "Détails d'une école",
+        title: "Détails d'un(e) élève",
         href: '',
     },
 ];
 
 interface IndexProps {
-    school: SchoolModel;
+    student: StudentModel;
 }
 
 export default function Index() {
-    const { school } = usePage<SharedData & IndexProps>().props;
+    const { student } = usePage<SharedData & IndexProps>().props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Détails de l'école" />
+            <Head title="Détails de l'élève" />
             <div className="mb-5 flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <Heading
-                    title={`Détails de l'école`}
-                    description="Consultez les informations complètes de l’établissement, y compris l’adresse, l’acronyme, la description et les membres associés."
+                    title="Détails de l'élève"
+                    description="Consultez les informations complètes de l’élève, telles que le nom, la date de naissance, le niveau fréquenté et d’autres informations liées à sa scolarité."
                 />
 
-                <SchoolCardDetails variant="admin" school={school} />
+                <StudentCardDetails variant="admin" student={student} />
             </div>
         </AppLayout>
     );
