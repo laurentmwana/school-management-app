@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Enums\RoleUserEnum;
 use App\Models\School;
 use App\Models\User;
 
@@ -64,15 +63,13 @@ class SchoolPolicy
         return $this->isOwner($user, $school);
     }
 
-    private function isOwner(User $user, ?School $school = null)
+    private function isOwner(User $user, ?School $school = null): bool
     {
-        return $school === null
-            ? $this->hasAdmin($user)
-            : $this->hasAdmin($user) && $school->user_id === $user->id;
+        if ($school === null) {
+            return true;
+        }
+
+        return isAdmin($user->roles) && $school->user_id === $user->id;
     }
 
-    private function hasAdmin(User $user)
-    {
-        return $user->role === RoleUserEnum::ADMIN->value;
-    }
 }

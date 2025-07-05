@@ -19,12 +19,12 @@ export default function StepFinish({ step }: StepIdentityProps) {
 
     return (
         <StepCardLayout
-            currentStep={7}
+            currentStep={4}
             onPrevious={() => router.get(route('step', { step: 6 }))}
-            previousStep={6}
-            totalSteps={7}
+            previousStep={3}
+            totalSteps={4}
             title="Félicitations 🎉"
-            description="Votre école a été configurée avec succès. Vous pouvez maintenant accéder à votre tableau de bord pour gérer les promotions, les années académiques, les étudiants et bien plus encore."
+            description="Votre école a été configurée avec succès. Vous pouvez maintenant accéder à votre tableau de bord pour gérer les promotions, les années académiques, les élèves et bien plus encore."
         >
             <Head title="Félicitations" />
 

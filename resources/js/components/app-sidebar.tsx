@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { NavGroup, type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { ArrowUp01, Award, Book, Calendar, Grid, HousePlus, MessageCircle, PersonStanding, User2, Users } from 'lucide-react';
+import { ArrowUp01, Award, Book, Calendar, FilePen, Grid, PersonStanding, User2, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItemsGroup: NavGroup[] = [
@@ -22,15 +22,9 @@ const mainNavItemsGroup: NavGroup[] = [
         title: 'Gestion',
         items: [
             {
-                title: 'Écoles',
-                icon: HousePlus,
-                href: route('#school.index'),
-            },
-
-            {
                 title: 'Classes',
                 icon: ArrowUp01,
-                href: '#',
+                href: route('#level.index'),
             },
 
             {
@@ -52,6 +46,12 @@ const mainNavItemsGroup: NavGroup[] = [
             },
 
             {
+                title: 'Notes',
+                icon: FilePen,
+                href: route('#grade.index'),
+            },
+
+            {
                 title: 'Résultats',
                 icon: Award,
                 href: route('#result.index'),
@@ -63,7 +63,7 @@ const mainNavItemsGroup: NavGroup[] = [
         title: 'Autres',
         items: [
             {
-                title: 'Tituteur',
+                title: 'Tuteur',
                 icon: User2,
                 href: route('#guardian.index'),
             },
@@ -77,13 +77,7 @@ const mainNavItemsGroup: NavGroup[] = [
     },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Chat',
-        href: '#',
-        icon: MessageCircle,
-    },
-];
+const footerNavItems: NavItem[] = [];
 
 export function AppSidebar() {
     return (

@@ -24,7 +24,7 @@ class StepController extends Controller
             return $this->redirectToStep(self::MIN_STEP);
         }
 
-        $user = $request->user()->load('schools');
+        $user = $request->user()->load('school');
         $stepSessionData = Session::get("school.step$step", []);
 
         return Inertia::render("step/step-$step", [
@@ -92,7 +92,7 @@ class StepController extends Controller
             $step4
         );
 
-        $school = $user->schools()->create($schoolData);
+        $school = $user->school()->create($schoolData);
 
         $user->update([
             'roles' => [

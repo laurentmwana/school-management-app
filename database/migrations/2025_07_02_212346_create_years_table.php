@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('end');
             $table->boolean('is_closed')->default(false);
             $table->foreignId('school_id')
-                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

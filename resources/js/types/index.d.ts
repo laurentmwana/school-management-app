@@ -41,6 +41,6 @@ export interface UserModel {
     created_at: string;
     updated_at: string;
     roles: string[];
-    schools: SchoolModel[];
+    school: SchoolModel | null;
     [key: string]: unknown; // This allows for additional properties...
 }

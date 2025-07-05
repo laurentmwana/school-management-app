@@ -8,7 +8,7 @@ export default function StepWelcome() {
     return (
         <StepCardLayout
             title="Bienvenue sur School Management"
-            description="Créez et gérez facilement votre école en ligne. Organisez les promotions, les années académiques, les étudiants et bien plus encore en quelques étapes simples."
+            description="Créez et gérez facilement votre école en ligne. Organisez les promotions, les années académiques, les élèves et bien plus encore en quelques étapes simples."
             totalSteps={4}
             currentStep={1}
         >

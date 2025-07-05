@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
-use App\Enums\RoleUserEnum;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,7 +18,7 @@ class CheckRoleAdmin
     {
         $user = $request->user();
 
-        if (!$user || $user->role !== RoleUserEnum::ADMIN->value) {
+        if ($user instanceof User &&  !isAdmin($user->roles)) {
             abort(Response::HTTP_UNAUTHORIZED, 'Accès refusé. Rôle administrateur requis.');
         }
 

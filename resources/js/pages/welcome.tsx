@@ -63,7 +63,7 @@ export default function Welcome() {
                                             href="#"
                                             className="ml-1 inline-flex items-center space-x-1 font-medium text-primary underline underline-offset-4 hover:text-primary/80"
                                         >
-                                            <span>Étudiants</span>
+                                            <span>élèves</span>
                                             <svg
                                                 width={10}
                                                 height={11}

@@ -4,8 +4,10 @@ namespace App\Observers;
 
 use App\Enums\LevelCycleEnum;
 use App\Enums\SecondaryCycleEnum;
-use App\Models\School;
 use App\Models\Level;
+use App\Models\School;
+use App\Models\Year;
+use Carbon\Carbon;
 
 class SchoolObserver
 {
@@ -39,30 +41,50 @@ class SchoolObserver
 
     public function created(School $school): void
     {
+        $this->createAcademicYear($school);
+
         foreach (self::$LEVELS as $cycle => $levels) {
             if ($cycle === LevelCycleEnum::SECONDAIRE->value) {
                 foreach ($levels as $subCycle => $subLevels) {
                     foreach ($subLevels as $level) {
-                        Level::create([
-                            'school_id' => $school->id,
-                            'name' => $level['name'],
-                            'alias' => $level['alias'],
-                            'cycle' => $cycle,
-                            'sub_cycle' => $subCycle,
-                        ]);
+                        $this->createLevel($school, $cycle, $level, $subCycle);
                     }
                 }
             } else {
                 foreach ($levels as $level) {
-                    Level::create([
-                        'school_id' => $school->id,
-                        'name' => $level['name'],
-                        'alias' => $level['alias'],
-                        'cycle' => $cycle,
-                        'sub_cycle' => null,
-                    ]);
+                    $this->createLevel($school, $cycle, $level);
                 }
             }
         }
+    }
+
+    private function createAcademicYear(School $school): void
+    {
+        $now = now();
+        $startYear = $now->month >= 9 ? $now->year : $now->year - 1;
+
+        $start = Carbon::create($startYear, 9, 1);
+        $end = (clone $start)->addMonths(9);
+
+        $name = $start->year . '-' . $end->year;
+
+        Year::create([
+            'school_id' => $school->id,
+            'name' => $name,
+            'start' => $start->year,
+            'end' => $end->year,
+            'is_closed' => false,
+        ]);
+    }
+
+    private function createLevel(School $school, string $cycle, array $levelData, ?string $subCycle = null): void
+    {
+        Level::create([
+            'school_id' => $school->id,
+            'name' => $levelData['name'],
+            'alias' => $levelData['alias'],
+            'cycle' => $cycle,
+            'sub_cycle' => $subCycle,
+        ]);
     }
 }

@@ -25,15 +25,13 @@ interface StepSchoolNamesProps {
 
 export default function StepSchoolNames({ step, user, dataSession }: StepSchoolNamesProps) {
     const { data, setData, post, processing, errors } = useForm<Required<StepSchoolNamesForm>>({
-        address: user.schools[0]?.address ?? dataSession?.address ?? '',
-        description: user.schools[0]?.description ?? dataSession?.description ?? '',
+        address: user.school?.address ?? dataSession?.address ?? '',
+        description: user.school?.description ?? dataSession?.description ?? '',
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('step', { step }));
-
-        console.log(errors);
     };
 
     return (
@@ -41,7 +39,7 @@ export default function StepSchoolNames({ step, user, dataSession }: StepSchoolN
             className="max-w-2xl"
             currentStep={3}
             onPrevious={() => router.get(route('step', { step: 2 }))}
-            totalSteps={7}
+            totalSteps={4}
             previousStep={2}
             title="Adresse & Description"
             description="Précisez l’adresse physique de votre établissement ainsi qu’une brève description pour mieux le présenter."

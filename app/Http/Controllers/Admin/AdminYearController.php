@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Year;
+use App\Services\Repositories\YearRepo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,10 +12,13 @@ use Inertia\Response;
 
 class AdminYearController extends Controller
 {
+    public function __construct(private YearRepo $repository) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('admin/year/index');
+        $years = $this->repository->getYearSchools($request);
+
+        return Inertia::render('admin/year/index', ['years' => $years]);
     }
 
     public function store(Request $request, string $id): RedirectResponse
@@ -23,19 +27,18 @@ class AdminYearController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        $year = Year::findOrFail($id);
+        $year = $this->repository->getYearSchoolOrFail($request, $id);
 
         $this->createNewYear($year);
 
-        return redirect()->route('#school.index')
-            ->with('message', 'école supprimée');
+        return redirect()->route('#year.index')
+            ->with('message', 'année scolaire supprimée');
 
     }
 
-
-    public function show(string $id): Response
+    public function show(Request $request, string $id): Response
     {
-        $year = Year::findOrFail($id);
+        $year = $this->repository->getYearSchoolOrFail($request, $id);
 
         return Inertia::render('admin/year/show', [
             'year' => $year
@@ -53,13 +56,16 @@ class AdminYearController extends Controller
             throw new \Exception("L'année académique $nameYear existe déjà.");
         }
 
-        $year->update(['is_closed']);
-
         $newYear =  Year::create([
             'start' => $start,
             'end'   => $end,
             'name'  => $nameYear,
+            'school_id' => $year->school_id,
         ]);
+
+        if ($newYear instanceof Year) {
+            $year->update(['is_closed' => true]);
+        }
 
         return $newYear;
     }

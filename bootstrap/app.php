@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => App\Http\Middleware\CheckRoleAdmin::class,
             'completed' => App\Http\Middleware\CheckRoleCompleted::class,
-            'parent' => App\Http\Middleware\CheckRoleParent::class,
+            'guardian' => App\Http\Middleware\CheckRoleGuardianStudent::class,
         ]);
 
         $middleware->web(append: [
